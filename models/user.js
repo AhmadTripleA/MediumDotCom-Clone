@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    Name: {
+    name: {
         type: String,
         required: [true, "Please Provide a Name"],
         default: "Name"
@@ -17,10 +17,13 @@ const userSchema = new mongoose.Schema({
         required: [true, "Please Provide an Email"],
         match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     },
+    password: {
+        type: String,
+        required: [true, "Please Provide a Password"],
+    },
     bio: {
         type: String,
-        required: [true, "Please Provide a Bio"],
-        default: "No Bio"
+        default: "No Description."
     },
     followers: {
         type: [mongoose.Schema.ObjectId],
@@ -30,6 +33,10 @@ const userSchema = new mongoose.Schema({
     following: {
         type: [mongoose.Schema.ObjectId],
         ref: "User",
+        default: []
+    },
+    socials: {
+        type: [String],
         default: []
     }
 }, { timestamps: true });
