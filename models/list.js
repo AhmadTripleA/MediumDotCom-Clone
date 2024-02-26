@@ -38,4 +38,4 @@ const listSchema = new mongoose.Schema({
 
 const List = mongoose.model("list", listSchema);
 
-module.exports = List;
+export default List;

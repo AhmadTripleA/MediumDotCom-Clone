@@ -24,12 +24,12 @@ const articleSchema = new mongoose.Schema({
         default: ['general']
     },
     likes: {
-        type: mongoose.Schema.ObjectId,
+        type: [mongoose.Schema.ObjectId],
         ref: "User",
         default: []
     },
     comments: {
-        type: mongoose.Schema.ObjectId,
+        type: [mongoose.Schema.ObjectId],
         ref: "Comment",
         default: []
     },
@@ -41,4 +41,4 @@ const articleSchema = new mongoose.Schema({
 
 const Article = mongoose.model("article", articleSchema);
 
-module.exports = Article;
+export default Article;

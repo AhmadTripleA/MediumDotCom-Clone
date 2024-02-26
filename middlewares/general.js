@@ -1,20 +1,25 @@
 import chalk from "chalk";
+import mongoose from "mongoose";
 
-function resErr(message, code, res) {
+async function resErr(message, code, res) {
     console.log(chalk.red(`Error: ${message}`));
-    res.status(code).json({
+    await res.status(code).json({
         success: false,
         error: message,
     });
 }
 
-function resMsg(data, message, code, res) {
+async function resMsg(data, message, code, res) {
     console.log(chalk.green(`Success: ${message}`));
-    res.status(code).json({
+    await res.status(code).json({
         success: true,
         message: message,
         data: data
     });
 }
 
-module.exports = { resErr, resMsg };
+async function errHandler(err, req, res, next) {
+    resErr(err.message || 'Internal Error.', err.code || 500, res);
+}
+
+export { resErr, resMsg, errHandler };

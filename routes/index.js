@@ -6,4 +6,4 @@ import userRoute from '../routes/user.js'
 
 router.use('/users', userRoute);
 
-module.exports = router;
+export default router;
